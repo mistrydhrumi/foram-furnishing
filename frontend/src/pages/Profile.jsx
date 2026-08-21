@@ -80,7 +80,7 @@ const Profile = () => {
       }
 
       const res = await axios.put(
-        `http://localhost:8000/api/v1/user/update/${userId}`,
+        `http://https://foram-furnishing.onrender.com:8000/api/v1/user/update/${userId}`,
         formData,
         {
           headers: {

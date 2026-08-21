@@ -9,7 +9,7 @@ const AdminOrders = () => {
   const approveCancel = async (orderId) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:8000/api/v1/orders/approve-cancel/${orderId}`,
+        `http://https://foram-furnishing.onrender.com:8000/api/v1/orders/approve-cancel/${orderId}`,
         {},
         {
           headers: {
@@ -30,9 +30,9 @@ const AdminOrders = () => {
   const fetchOrders = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8000/api/v1/orders/all",
+        "http://https://foram-furnishing.onrender.com:8000/api/v1/orders/all",
         {
-          headers: {  
+          headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         },
@@ -56,7 +56,7 @@ const AdminOrders = () => {
   const updateOrderStatus = async (orderId, status) => {
     try {
       const { data } = await axios.put(
-        `http://localhost:8000/api/v1/orders/update-order-status/${orderId}`,
+        `http://https://foram-furnishing.onrender.com:8000/api/v1/orders/update-order-status/${orderId}`,
         { status },
         {
           headers: {
@@ -127,11 +127,10 @@ const AdminOrders = () => {
                     <span
                       className={`px-2 py-1 rounded text-xs font-medium
                       
-                      ${
-                        order.status === "Paid"
+                      ${order.status === "Paid"
                           ? "bg-green-100 text-green-700"
                           : "bg-yellow-100 text-yellow-700"
-                      }
+                        }
 
                     `}
                     >

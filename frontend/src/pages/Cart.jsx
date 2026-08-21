@@ -21,25 +21,25 @@ const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const API = "http://localhost:8000/api/v1/cart";
+  const API = "https://foram-furnishing.onrender.com/api/v1/cart";
   const accessToken = localStorage.getItem("accessToken");
 
   const loadCart = async () => {
-  try {
-    const res = await axios.get(API, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
+    try {
+      const res = await axios.get(API, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
 
-    if (res.data.success) {
-      // You likely want to dispatch the cart data here
-      dispatch(setCart(res.data.cart))
+      if (res.data.success) {
+        // You likely want to dispatch the cart data here
+        dispatch(setCart(res.data.cart))
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
   }
-}
 
   const handleUpdateQuantity = async (productId, type) => {
     try {
@@ -67,7 +67,7 @@ const Cart = () => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-        data:{productId}
+        data: { productId }
       });
 
       if (res.data.success) {
@@ -79,9 +79,9 @@ const Cart = () => {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     loadCart()
-  },[dispatch])
+  }, [dispatch])
 
   return (
     <div className="pt-24 pb-12 bg-gray-50/50 min-h-screen">
@@ -120,7 +120,7 @@ const Cart = () => {
                         <p className="text-blue-600 font-semibold text-base">
                           ₹{product?.productId?.productPrice.toLocaleString("en-IN")}
                         </p>
-                        
+
                         <div className="flex items-center gap-4 mt-3">
                           <div className="flex items-center gap-3 bg-gray-100 p-1.5 rounded-xl border border-gray-200">
                             <button
@@ -148,7 +148,7 @@ const Cart = () => {
                         <p className="font-bold text-xl text-gray-900">
                           ₹{(product?.productId?.productPrice * product?.quantity).toLocaleString("en-IN")}
                         </p>
-                        
+
                         <button
                           onClick={() => handleRemove(product?.productId?._id)}
                           className="flex items-center gap-1.5 text-red-500 hover:text-red-600 text-sm font-medium transition-colors p-2 hover:bg-red-50 rounded-lg group"
@@ -211,15 +211,15 @@ const Cart = () => {
                   </div>
 
                   <div className="space-y-3 pt-4">
-                    <Button 
-                      onClick={() => navigate(`/address`)} 
+                    <Button
+                      onClick={() => navigate(`/address`)}
                       className="w-full bg-blue-600 py-6 text-white font-bold text-base rounded-2xl shadow-lg shadow-blue-200 hover:bg-blue-700 hover:scale-[1.02] active:scale-100 transition-all cursor-pointer"
                     >
                       CHECKOUT NOW
                     </Button>
 
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       onClick={() => navigate("/product")}
                       className="w-full border-gray-200 py-6 text-gray-600 font-semibold hover:bg-gray-50 rounded-2xl transition-all"
                     >
@@ -247,7 +247,7 @@ const Cart = () => {
           <p className="text-gray-500 text-lg mb-10 leading-relaxed">
             Your shopping basket is currently empty. Start filling it with our curated furniture collection!
           </p>
-          
+
           <Button
             onClick={() => navigate("/product")}
             className="group relative bg-blue-600 text-white py-8 px-12 rounded-3xl font-bold text-lg shadow-2xl shadow-blue-200 hover:bg-blue-700 transition-all overflow-hidden"

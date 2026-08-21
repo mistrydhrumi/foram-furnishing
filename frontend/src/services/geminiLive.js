@@ -2,7 +2,17 @@ import { GoogleGenAI, Modality } from "@google/genai";
 
 export class GeminiLiveService {
   constructor() {
-    this.ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+    const apiKey = import.meta.env?.VITE_GEMINI_API_KEY || (typeof process !== "undefined" && process.env?.GEMINI_API_KEY) || "";
+    if (apiKey) {
+      try {
+        this.ai = new GoogleGenAI({ apiKey });
+      } catch (err) {
+        console.error("Failed to initialize GoogleGenAI in GeminiLiveService:", err);
+        this.ai = null;
+      }
+    } else {
+      this.ai = null;
+    }
     this.session = null;
     this.audioContext = null;
     this.workletNode = null;
@@ -12,6 +22,10 @@ export class GeminiLiveService {
 
   async connect(callbacks) {
     if (this.isConnected) return;
+    if (!this.ai) {
+      callbacks.onError?.(new Error("VITE_GEMINI_API_KEY is not configured."));
+      return;
+    }
 
     try {
       this.session = await this.ai.live.connect({

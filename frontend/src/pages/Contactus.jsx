@@ -6,45 +6,45 @@ import axios from "axios";
 
 const Contactus = () => {
   const [formData, setFormData] = useState({
-  fullName: "",
-  email: "",
-  phone: "",
-  inquiryType: "",
-  projectStyle: "",
-  spaceType: "",
-  location: "",
-  message: "",
-});
-
-const handleChange = (e) => {
-  setFormData({
-    ...formData,
-    [e.target.name]: e.target.value,
+    fullName: "",
+    email: "",
+    phone: "",
+    inquiryType: "",
+    projectStyle: "",
+    spaceType: "",
+    location: "",
+    message: "",
   });
-};
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  try {
-    await axios.post("http://localhost:8000/api/v1/contact", formData);
-    alert("Message sent successfully ✅");
-
+  const handleChange = (e) => {
     setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      inquiryType: "",
-      projectStyle: "",
-      spaceType: "",
-      location: "",
-      message: "",
+      ...formData,
+      [e.target.name]: e.target.value,
     });
-  } catch (error) {
-    console.log(error);
-    alert("Something went wrong ❌");
-  }
-};
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.post("https://foram-furnishing.onrender.com/api/v1/contact", formData);
+      alert("Message sent successfully ✅");
+
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        inquiryType: "",
+        projectStyle: "",
+        spaceType: "",
+        location: "",
+        message: "",
+      });
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong ❌");
+    }
+  };
   return (
     <section className="bg-gray-100 py-30 px-30">
       <div className="max-w-7xl mx-auto">
@@ -113,12 +113,12 @@ const handleSubmit = async (e) => {
 
                 <div>
                   <label className="text-sm text-gray-600">Inquiry Type</label>
-                  <select 
-                  className="w-full border rounded-lg p-3 mt-1"
-                  name="inquiryType"
-                  value={formData.inquiryType}
-                  onChange={handleChange}
-                  required
+                  <select
+                    className="w-full border rounded-lg p-3 mt-1"
+                    name="inquiryType"
+                    value={formData.inquiryType}
+                    onChange={handleChange}
+                    required
                   >
                     <option value="">Select Inquiry Type</option>
                     <option value="interior">Interior Design</option>
@@ -131,12 +131,12 @@ const handleSubmit = async (e) => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm text-gray-600">Project Style</label>
-                  <select 
-                  className="w-full border rounded-lg p-3 mt-1"
-                  name="projectStyle"
-                  value={formData.projectStyle}
-                  onChange={handleChange}
-                  required
+                  <select
+                    className="w-full border rounded-lg p-3 mt-1"
+                    name="projectStyle"
+                    value={formData.projectStyle}
+                    onChange={handleChange}
+                    required
                   >
                     <option value="">Select Style</option>
                     <option value="modern">Modern</option>

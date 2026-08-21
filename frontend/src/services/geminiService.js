@@ -1,16 +1,32 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
+let geminiChat = null;
 
-export const geminiChat = ai.chats.create({
-  model: "gemini-3-flash-preview",
-  config: {
-    systemInstruction: `You are Studio Assistant, a helper for an interior design website.
-    Help users with room styling ideas, color palettes, furniture pairings, materials, lighting, layout advice, and mood directions.
-    Keep replies very short, maximum 2-3 sentences. Be direct and practical.
-    Never use markdown formatting like **, *, #, or bullet points. Write in plain sentences only.`,
-  },
-});
+function getChatInstance() {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  if (!apiKey) {
+    console.warn("VITE_GEMINI_API_KEY is missing from environment variables.");
+    return null;
+  }
+  if (!geminiChat) {
+    try {
+      const ai = new GoogleGenAI({ apiKey });
+      geminiChat = ai.chats.create({
+        model: "gemini-2.5-flash",
+        config: {
+          systemInstruction: `You are Studio Assistant, a helper for an interior design website.
+Help users with room styling ideas, color palettes, furniture pairings, materials, lighting, layout advice, and mood directions.
+Keep replies very short, maximum 2-3 sentences. Be direct and practical.
+Never use markdown formatting like **, *, #, or bullet points. Write in plain sentences only.`,
+        },
+      });
+    } catch (err) {
+      console.error("Failed to initialize GoogleGenAI:", err);
+      return null;
+    }
+  }
+  return geminiChat;
+}
 
 function stripMarkdown(text) {
   return text
@@ -24,7 +40,11 @@ function stripMarkdown(text) {
 
 export async function getGeminiResponse(message) {
   try {
-    const response = await geminiChat.sendMessage({ message });
+    const chat = getChatInstance();
+    if (!chat) {
+      return "Design assistant is currently offline. Please set VITE_GEMINI_API_KEY in environment variables.";
+    }
+    const response = await chat.sendMessage({ message });
     const rawText = response.text || "I'm sorry, I couldn't process that request.";
     return stripMarkdown(rawText);
   } catch (error) {

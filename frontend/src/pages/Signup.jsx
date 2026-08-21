@@ -32,64 +32,64 @@ function Signup() {
   };
 
   const submitHandler = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const { firstName, lastName, email, password, confirmPassword } = formData;
+    const { firstName, lastName, email, password, confirmPassword } = formData;
 
-  // Empty field validation
-  if (!firstName || !lastName || !email || !password || !confirmPassword) {
-    toast.error("All fields are required");
-    return;
-  }
-
-  // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    toast.error("Please enter a valid email address");
-    return;
-  }
-
-  // Strong password validation
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
-
-  if (!passwordRegex.test(password)) {
-    toast.error(
-      "Password must contain 8 characters, uppercase, lowercase, number and special character"
-    );
-    return;
-  }
-
-  // Password match validation
-  if (password !== confirmPassword) {
-    toast.error("Passwords do not match");
-    return;
-  }
-
-  try {
-    setLoading(true);
-
-    const res = await axios.post(
-      `http://localhost:8000/api/v1/user/register`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    if (res.data.success) {
-      navigate("/verify");
-      toast.success(res.data.message);
+    // Empty field validation
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+      toast.error("All fields are required");
+      return;
     }
-  } catch (error) {
-    console.log(error);
-    toast.error(error.response?.data?.message || "Server connection failed");
-  } finally {
-    setLoading(false);
-  }
-};
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    // Strong password validation
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must contain 8 characters, uppercase, lowercase, number and special character"
+      );
+      return;
+    }
+
+    // Password match validation
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await axios.post(
+        `https://foram-furnishing.onrender.com/api/v1/user/register`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (res.data.success) {
+        navigate("/verify");
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response?.data?.message || "Server connection failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-200 p-6">
@@ -216,7 +216,7 @@ function Signup() {
               type="submit"
               className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
             >
-              {loading? <><Loader2 className="h-4 w-4 animate-spin mr-2"/>Please wait</>:'Create Account'}
+              {loading ? <><Loader2 className="h-4 w-4 animate-spin mr-2" />Please wait</> : 'Create Account'}
             </button>
 
           </form>

@@ -10,7 +10,7 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "http://https://foram-furnishing.onrender.com:8000";
 
 const AdminConsultation = () => {
   const [consultations, setConsultations] = useState([]);
@@ -104,11 +104,10 @@ const AdminConsultation = () => {
 
         {pageMessage.text && (
           <div
-            className={`mb-6 rounded-2xl border px-4 py-3 text-sm ${
-              pageMessage.type === "success"
+            className={`mb-6 rounded-2xl border px-4 py-3 text-sm ${pageMessage.type === "success"
                 ? "border-emerald-200 bg-emerald-50 text-emerald-900"
                 : "border-rose-200 bg-rose-50 text-rose-900"
-            }`}
+              }`}
           >
             {pageMessage.text}
           </div>

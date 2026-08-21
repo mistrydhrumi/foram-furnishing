@@ -29,7 +29,7 @@ const ProductDesc = ({ product }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/cart/add",
+        "https://foram-furnishing.onrender.com/api/v1/cart/add",
         { productId, quantity },
         {
           headers: {
@@ -64,11 +64,11 @@ const ProductDesc = ({ product }) => {
 
       {/* Rating */}
       <div className="flex items-center gap-1">
-        <Star className="text-yellow-400 fill-yellow-400" size={18}/>
-        <Star className="text-yellow-400 fill-yellow-400" size={18}/>
-        <Star className="text-yellow-400 fill-yellow-400" size={18}/>
-        <Star className="text-yellow-400 fill-yellow-400" size={18}/>
-        <Star className="text-gray-300" size={18}/>
+        <Star className="text-yellow-400 fill-yellow-400" size={18} />
+        <Star className="text-yellow-400 fill-yellow-400" size={18} />
+        <Star className="text-yellow-400 fill-yellow-400" size={18} />
+        <Star className="text-yellow-400 fill-yellow-400" size={18} />
+        <Star className="text-gray-300" size={18} />
         <span className="text-gray-500 ml-2">(4.0)</span>
       </div>
 
@@ -93,7 +93,7 @@ const ProductDesc = ({ product }) => {
           >
             <Minus size={18} />
           </button>
-          
+
           <span className="text-lg font-bold w-4 text-center">
             {quantity}
           </span>

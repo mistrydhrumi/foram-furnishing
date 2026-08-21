@@ -20,7 +20,7 @@ const OrderCard = ({ userOrder = [], downloadInvoice }) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
       const res = await axios.post(
-        `http://localhost:8000/api/v1/orders/cancel-request/${id}`,
+        `https://foram-furnishing.onrender.com/api/v1/orders/cancel-request/${id}`,
         {},
         {
           headers: {
@@ -71,11 +71,10 @@ const OrderCard = ({ userOrder = [], downloadInvoice }) => {
                   <div>
                     <p className="text-sm text-gray-500">Payment</p>
                     <span
-                      className={`px-3 py-1 rounded text-xs font-medium ${
-                        order.status === "Paid"
+                      className={`px-3 py-1 rounded text-xs font-medium ${order.status === "Paid"
                           ? "bg-green-100 text-green-700"
                           : "bg-yellow-100 text-yellow-700"
-                      }`}
+                        }`}
                     >
                       {order.status}
                     </span>
@@ -152,11 +151,11 @@ const OrderCard = ({ userOrder = [], downloadInvoice }) => {
                   {/* ✅ MESSAGE FOR OUT OF DELIVERY/DELIVERED */}
                   {(order.orderStatus === "Out for Delivery" ||
                     order.orderStatus === "Delivered") && (
-                    <span className="text-gray-600 font-medium">
-                      Cancellation not allowed - Order is{" "}
-                      {order.orderStatus.toLowerCase()}
-                    </span>
-                  )}
+                      <span className="text-gray-600 font-medium">
+                        Cancellation not allowed - Order is{" "}
+                        {order.orderStatus.toLowerCase()}
+                      </span>
+                    )}
 
                   {/* ✅ REQUEST SENT */}
                   {order.cancelRequest && !order.cancelApproved && (

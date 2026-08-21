@@ -19,7 +19,8 @@ app.use(express.json())
 app.use(cors({
     origin: [
         'http://localhost:5173',
-        'http://localhost:5174'
+        'http://localhost:5174',
+        'https://foram-furnishing-eight.vercel.app/'
     ],
     credentials: true
 }))
@@ -33,12 +34,12 @@ app.use("/api/v1/contact", contactRoutes);
 app.use("/api/v1/consultation", consultationRoutes);
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
 });
 
 
 
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
     connectDB()
     console.log(`server is listening at port:${PORT}`);
 })

@@ -127,7 +127,7 @@ const Consultation = () => {
         payload.append(key, value);
       });
 
-      await axios.post('http://localhost:8000/api/v1/consultation', payload, {
+      await axios.post('https://foram-furnishing.onrender.com/api/v1/consultation', payload, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

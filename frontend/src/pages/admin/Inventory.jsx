@@ -11,7 +11,7 @@
 //   const [products, setProducts] = useState([]);
 //   const [loading, setLoading] = useState(true);
 
-//   const API = "http://localhost:8000/api/v1/product";
+//   const API = "http://https://foram-furnishing.onrender.com:8000/api/v1/product";
 //   const accessToken = localStorage.getItem("accessToken");
 
 //   // ✅ FETCH PRODUCTS

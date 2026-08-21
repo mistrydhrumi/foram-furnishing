@@ -10,7 +10,7 @@ const VerifyEmail = () => {
     const VerifyEmail = async () => {
         try {
             const res = await axios.post(
-                "http://localhost:8000/api/v1/user/verify",
+                "http://https://foram-furnishing.onrender.com:8000/api/v1/user/verify",
                 {},
                 {
                     headers: {

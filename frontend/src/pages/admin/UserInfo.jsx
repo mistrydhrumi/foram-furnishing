@@ -18,11 +18,11 @@ const UserInfo = () => {
   const [file, setFile] = useState(null);
   const [role, setRole] = useState("");
 
-useEffect(() => {
-  if (updateUser?.role) {
-    setRole(updateUser.role); // "admin" or "user"
-  }
-}, [updateUser]);
+  useEffect(() => {
+    if (updateUser?.role) {
+      setRole(updateUser.role); // "admin" or "user"
+    }
+  }, [updateUser]);
 
   //const { user } = useSelector((store) => store.user);
   const params = useParams();
@@ -65,7 +65,7 @@ useEffect(() => {
       }
 
       const res = await axios.put(
-        `http://localhost:8000/api/v1/user/update/${userId}`,
+        `http://https://foram-furnishing.onrender.com:8000/api/v1/user/update/${userId}`,
         formData,
         {
           headers: {
@@ -88,7 +88,7 @@ useEffect(() => {
   const getUserDetails = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/v1/user/get-user/${userId}`,
+        `http://https://foram-furnishing.onrender.com:8000/api/v1/user/get-user/${userId}`,
       );
       if (res.data.success) {
         setUpdateUser(res.data.user);

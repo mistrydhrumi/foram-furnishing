@@ -25,7 +25,7 @@ const Navbar = () => {
     try {
       if (token && token !== "null" && token !== "undefined") {
         await axios.post(
-          "http://localhost:8000/api/v1/user/logout",
+          "https://foram-furnishing.onrender.com/api/v1/user/logout",
           {},
           {
             headers: {

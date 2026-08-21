@@ -29,43 +29,43 @@ const ProductCard = ({ product }) => {
 
   // ✅ Add to Cart
   const addToCart = async () => {
-  if (!accessToken) {
-    toast.error("Please login first");
-    return;
-  }
-
-  if (!_id) {
-    toast.error("Invalid product");
-    return;
-  }
-
-  try {
-    const res = await axios.post(
-      "http://localhost:8000/api/v1/cart/add",
-      { productId: _id },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-
-    if (res.data.success) {
-      toast.success("Product added to cart");
-      dispatch(setCart(res.data.cart));
+    if (!accessToken) {
+      toast.error("Please login first");
+      return;
     }
-  } catch (error) {
-    console.log(error.response?.data);
-    toast.error(error.response?.data?.message || "Error adding to cart");
-  }
-};
+
+    if (!_id) {
+      toast.error("Invalid product");
+      return;
+    }
+
+    try {
+      const res = await axios.post(
+        "https://foram-furnishing.onrender.com/api/v1/cart/add",
+        { productId: _id },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      if (res.data.success) {
+        toast.success("Product added to cart");
+        dispatch(setCart(res.data.cart));
+      }
+    } catch (error) {
+      console.log(error.response?.data);
+      toast.error(error.response?.data?.message || "Error adding to cart");
+    }
+  };
 
   // ✅ FIXED: Toggle Wishlist (updates Redux instantly)
   const toggleWishlist = async () => {
     try {
 
       const res = await axios.post(
-        "http://localhost:8000/api/v1/wishlist/toggle",
+        "https://foram-furnishing.onrender.com/api/v1/wishlist/toggle",
         { productId: _id },
         {
           headers: {

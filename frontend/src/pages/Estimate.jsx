@@ -6,7 +6,7 @@ import StepThree from "../components/StepThree";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "http://https://foram-furnishing.onrender.com:8000";
 
 const Estimate = () => {
   const [step, setStep] = useState(1);

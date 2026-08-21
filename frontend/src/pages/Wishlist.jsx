@@ -17,7 +17,7 @@ const Wishlist = () => {
   const getWishlist = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/v1/wishlist",
+        "http://https://foram-furnishing.onrender.com:8000/api/v1/wishlist",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ const Wishlist = () => {
   const removeWishlist = async (productId) => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/wishlist/toggle",
+        "http://https://foram-furnishing.onrender.com:8000/api/v1/wishlist/toggle",
         { productId },
         {
           headers: {
@@ -68,7 +68,7 @@ const Wishlist = () => {
   const addToCart = async (productId) => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/cart/add",
+        "http://https://foram-furnishing.onrender.com:8000/api/v1/cart/add",
         { productId },
         {
           headers: {
