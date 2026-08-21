@@ -1,0 +1,44 @@
+import express from 'express'
+import 'dotenv/config'
+import connectDB from './database/db.js'
+import userRoute from './routes/userRoute.js'
+import productRoute from './routes/productRoute.js'
+import cartRoute from './routes/cartRoute.js'
+import orderRoute from './routes/orderRoute.js'
+import cors from 'cors'
+import wishlistRoutes from "./routes/wishlistRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
+import consultationRoutes from "./routes/consultationRoutes.js";
+import path from "path";
+
+const app = express()
+const PORT = process.env.PORT || 3000
+const __dirname = path.resolve();
+
+app.use(express.json())
+app.use(cors({
+    origin: [
+        'http://localhost:5173',
+        'http://localhost:5174'
+    ],
+    credentials: true
+}))
+app.use("/uploads", express.static("uploads"));
+app.use('/api/v1/user', userRoute)
+app.use('/api/v1/product', productRoute)
+app.use('/api/v1/cart', cartRoute)
+app.use('/api/v1/orders', orderRoute)
+app.use("/api/v1/wishlist", wishlistRoutes);
+app.use("/api/v1/contact", contactRoutes);
+app.use("/api/v1/consultation", consultationRoutes);
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+});
+
+
+
+app.listen(PORT,()=>{
+    connectDB()
+    console.log(`server is listening at port:${PORT}`);
+})
