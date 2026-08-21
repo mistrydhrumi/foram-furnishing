@@ -9,7 +9,7 @@ const AdminOrders = () => {
   const approveCancel = async (orderId) => {
     try {
       const { data } = await axios.post(
-        `http://https://foram-furnishing.onrender.com:8000/api/v1/orders/approve-cancel/${orderId}`,
+        `https://foram-furnishing.onrender.com/api/v1/orders/approve-cancel/${orderId}`,
         {},
         {
           headers: {
@@ -30,7 +30,7 @@ const AdminOrders = () => {
   const fetchOrders = async () => {
     try {
       const { data } = await axios.get(
-        "http://https://foram-furnishing.onrender.com:8000/api/v1/orders/all",
+        "https://foram-furnishing.onrender.com/api/v1/orders/all",
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -56,7 +56,7 @@ const AdminOrders = () => {
   const updateOrderStatus = async (orderId, status) => {
     try {
       const { data } = await axios.put(
-        `http://https://foram-furnishing.onrender.com:8000/api/v1/orders/update-order-status/${orderId}`,
+        `https://foram-furnishing.onrender.com/api/v1/orders/update-order-status/${orderId}`,
         { status },
         {
           headers: {

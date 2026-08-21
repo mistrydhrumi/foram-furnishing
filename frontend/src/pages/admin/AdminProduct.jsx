@@ -104,7 +104,7 @@ const AdminProduct = () => {
 
     try {
       const res = await axios.put(
-        `http://https://foram-furnishing.onrender.com:8000/api/v1/product/update/${editProduct._id}`,
+        `https://foram-furnishing.onrender.com/api/v1/product/update/${editProduct._id}`,
         formData,
         {
           headers: {
@@ -134,7 +134,7 @@ const AdminProduct = () => {
         (product) => product._id !== productId,
       );
       const res = await axios.delete(
-        `http://https://foram-furnishing.onrender.com:8000/api/v1/product/delete/${productId}`,
+        `https://foram-furnishing.onrender.com/api/v1/product/delete/${productId}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

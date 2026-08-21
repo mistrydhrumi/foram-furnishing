@@ -35,7 +35,7 @@ const Products = () => {
       setLoading(true);
 
       const res = await axios.get(
-        "http://https://foram-furnishing.onrender.com:8000/api/v1/product/getallproducts",
+        "https://foram-furnishing.onrender.com/api/v1/product/getallproducts",
       );
 
       if (res.data.success) {

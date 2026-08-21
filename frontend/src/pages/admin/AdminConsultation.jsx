@@ -10,7 +10,7 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
 
-const API_BASE = "http://https://foram-furnishing.onrender.com:8000";
+const API_BASE = "https://foram-furnishing.onrender.com";
 
 const AdminConsultation = () => {
   const [consultations, setConsultations] = useState([]);

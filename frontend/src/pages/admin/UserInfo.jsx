@@ -65,7 +65,7 @@ const UserInfo = () => {
       }
 
       const res = await axios.put(
-        `http://https://foram-furnishing.onrender.com:8000/api/v1/user/update/${userId}`,
+        `https://foram-furnishing.onrender.com/api/v1/user/update/${userId}`,
         formData,
         {
           headers: {
@@ -88,7 +88,7 @@ const UserInfo = () => {
   const getUserDetails = async () => {
     try {
       const res = await axios.get(
-        `http://https://foram-furnishing.onrender.com:8000/api/v1/user/get-user/${userId}`,
+        `https://foram-furnishing.onrender.com/api/v1/user/get-user/${userId}`,
       );
       if (res.data.success) {
         setUpdateUser(res.data.user);

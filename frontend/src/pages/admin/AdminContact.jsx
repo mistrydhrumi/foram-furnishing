@@ -20,7 +20,7 @@ function AdminContact() {
 
   const fetchContacts = async () => {
     try {
-      const res = await axios.get("http://https://foram-furnishing.onrender.com:8000/api/v1/contact")
+      const res = await axios.get("https://foram-furnishing.onrender.com/api/v1/contact")
       console.log(res.data); // 🔥 DEBUG
       setContacts(res.data);
     } catch (error) {
@@ -56,7 +56,7 @@ function AdminContact() {
   const handleRemarkSubmit = async () => {
     if (!activeContact) return;
     try {
-      const res = await axios.put(`http://https://foram-furnishing.onrender.com:8000/api/v1/contact/${activeContact._id}/remark`, {
+      const res = await axios.put(`https://foram-furnishing.onrender.com/api/v1/contact/${activeContact._id}/remark`, {
         followUp: remarkText,
       });
       setContacts((prev) => prev.map((c) => (c._id === activeContact._id ? res.data.data : c)));
@@ -72,7 +72,7 @@ function AdminContact() {
   const handleDeleteConfirm = async () => {
     if (!activeContact) return;
     try {
-      await axios.delete(`http://https://foram-furnishing.onrender.com:8000/api/v1/contact/${activeContact._id}`);
+      await axios.delete(`https://foram-furnishing.onrender.com/api/v1/contact/${activeContact._id}`);
       setContacts((prev) => prev.filter((c) => c._id !== activeContact._id));
       setDeleteOpen(false);
       showMessage("success", "Contact message deleted.");
