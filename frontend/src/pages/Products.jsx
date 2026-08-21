@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import FilterSidebar from "@/components/ui/filterSidebar";
+import FilterSidebar from "@/components/ui/FilterSidebar";
 import ProductCard from "@/components/ui/ProductCard";
 import { toast } from "sonner";
 import axios from "axios";
